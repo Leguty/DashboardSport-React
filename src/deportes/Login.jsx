@@ -16,7 +16,6 @@ export const Login = () => {
         })
     }
 
-
     //********** */
        const onSubmit = async (e) => {
         e.preventDefault();
@@ -32,11 +31,10 @@ export const Login = () => {
             const URI = 'http://localhost:8001/usuarios/login'
         console.log("paso por aca")
         const resp = await axios.post(URI, body, axiosConfig );
-        
+   
         let s = JSON.stringify(resp?.data);
-
             let union1 = s.split(":")[2];
-  
+            //let union2 = s.split(":")[2];
              let r = union1.substring(1, union1.length-3);
                   console.log('Este es el JWT:',r);
                  localStorage.setItem('auth',r)
@@ -78,10 +76,10 @@ export const Login = () => {
              />
             
              <button onClick={onSubmit} type="submit" color="#062af8" >
-             
+            
             </button>
              <Link to="/create" >
-             <button type="submit" >Sing Up</button></Link>
+             <button type="submit" className="btn-register">Ingresar</button></Link>
          </form>
          
      </div>
