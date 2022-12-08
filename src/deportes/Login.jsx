@@ -1,12 +1,33 @@
-import { useState } from "react";
+import { useState, useEffect} from "react";
 import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
+import Swal from 'sweetalert2';
+
 //import styles from "./styles.module.css";
 //useNavigate
-export const Login = () => {
+
+   
+    export const Login = () => {
+    
+    //Se crea una funcion de monstrar alerta
+    useEffect ( ()=>{
+        //mostraralert()
+    },[])
+
+     //Se llama la funcion mostraralert
+     const mostraralert = () => {
+        Swal.fire({
+            title: 'Su correo y contraseña son correctos',
+            text: 'Ud desea continuar',
+            icon: 'warning',
+            showDenyButton: "NO",
+            confirmButtonText: "SI",
+          })
+    }
+
     const [body, setBody] = useState({ correo: '', password: '' })
     const navigate  = useNavigate()
-   // const classes = useStyles()
+   
 
     const inputChange = ({ target }) => {
         const { name, value } = target
@@ -20,7 +41,7 @@ export const Login = () => {
        const onSubmit = async (e) => {
         e.preventDefault();
         try{
-
+            
             let axiosConfig = {
                 headers: {
                     'Content-Type': 'application/json;charset=UTF-8',
