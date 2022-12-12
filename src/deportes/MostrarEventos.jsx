@@ -2,7 +2,7 @@ import axios from 'axios'
 import {useState, useEffect, axiosConfig} from 'react'
 import {Link, Navigate} from 'react-router-dom'
 import Table from 'react-bootstrap/Table'
-//import Swal from 'sweetalert2'
+import Swal from 'sweetalert2'
 
 //Importamos la libreria del icono 
 import { FaTrashAlt, FaPencilAlt,FaFileSignature } from "react-icons/fa";
@@ -30,11 +30,35 @@ export const CompShowEventos = () => {
 
     //procedimineto para eliminar un registro
     const deleteBlog = async (_id) => {
-    
-        //fire("Archivo eliminado con Exito")
-       await axios.delete(`${URI2}${_id}`)
-       getBlogs()
+
+        //insertar la validación con Alert
+
+      
+       Swal.fire({
+        title: 'Advertencia',
+        text: 'Esta seguro de eliminar el evento?',
+        icon: 'question',
+        showDenyButton: true,
+        denyButtonText: "NO",
+        confirmButtonText: "SI",
+       }).then(response => {
+        if(response.isConfirmed){
+            axios.delete(`${URI2}${_id}`)
+            Swal.fire("El evento se elimino con exito")
+            getBlogs()
+        }else{
+            Swal.fire("Seleccione el evento a eliminar")
+        }
+       })
+       
     }
+
+
+        
+        //fire("Archivo eliminado con Exito")
+      // await axios.delete(`${URI2}${_id}`)
+       //getBlogs()
+   // }
 
 
 //Aqui esta nuestro codigo HTML de como se mostrara

@@ -2,6 +2,7 @@ import axios from 'axios'
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import styled from "styled-components";
+import Swal from 'sweetalert2'
 
 
 const URI = 'http://localhost:8001/usuarios/regevento'
@@ -19,8 +20,14 @@ export const CompCrearEvento = () => {
     //procedimiento guardar
     const store = async (e) => {
         e.preventDefault()
+
+        //Se crea alerta de almacenamiento 
+        Swal.clickConfirm("Información almacenada con exito")
         await axios.post(URI, {fecha: fecha, equipo1: equipo1, equipo2: equipo2, marcador1: marcador1, marcador2: marcador2, tipoevento: tipoevento})
+        //Se crea alerta de almacenamiento
+        Swal.fire("El archivo se guardo de manera exitosa")
         navigate('/sheventos')
+        
     }   
 
     return (

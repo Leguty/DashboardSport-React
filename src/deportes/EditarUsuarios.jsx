@@ -1,6 +1,7 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
+import Swal from 'sweetalert2'
 
 const URI = 'http://localhost:8001/usuarios/shuser/'
 const URI2 = 'http://localhost:8001/usuarios/upuser/'
@@ -15,6 +16,21 @@ export const CompEditUser = () => {
     //procedimiento para actualizar
     const onSubmit = async (e) => {
         e.preventDefault()
+
+        Swal.fire({
+            title: 'Desea guardar los cambios?',
+            showDenyButton: true,
+            showCancelButton: true,
+            confirmButtonText: 'Guardar',
+            denyButtonText: `No guardar`,
+          }).then((result) => {
+            if (result.isConfirmed) {
+              Swal.fire('Guardado!', '', '')
+            } else if (result.isDenied) {
+              Swal.fire('La actualizacion del usuario no fue guardada', '', 'info')
+            }
+          })
+
         await axios.put(URI2+_id, {
             nameuser: nameuser,
             correo: correo,
@@ -36,7 +52,7 @@ export const CompEditUser = () => {
         getBlogById()
      },[ ] )
     return (
-        <div>
+        <div className="login-form">
         <h3>Editar Usuario</h3>
         <form>
     
@@ -68,7 +84,7 @@ export const CompEditUser = () => {
                                        
                 />
             </div>            
-            <button type="submit" onClick={onSubmit} >Actualizar</button>
+            <button type="submit" onClick={onSubmit} className="btn-register">Actualizar</button>
         </form>
     </div>
     )

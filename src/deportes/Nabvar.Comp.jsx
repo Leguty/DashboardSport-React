@@ -8,8 +8,10 @@ export const NavbarComp = () => {
 
 return (
   
+  //<Navbar className='navBg' expand="lg" bg="light" variant="light">
  <>  
-  <Navbar className='navBg' expand="lg" bg="light" variant="light">
+  
+    <Navbar className="navBg" expand="lg" variant="dark" >
       <Container>
         <Navbar.Brand as={Link} to={'/'} >DashBoardSport</Navbar.Brand>
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />

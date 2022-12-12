@@ -2,6 +2,7 @@ import axios from 'axios'
 import {useState, useEffect} from 'react'
 import {Link} from 'react-router-dom'
 import Table from 'react-bootstrap/Table'
+import Swal from 'sweetalert2'
 
 
 //Importamos la libreria del icono 
@@ -41,9 +42,30 @@ let axiosConfig = {
 
     //procedimineto para eliminar un registro
     const deleteBlog = async (_id) => {
-       await axios.delete(`${URI}${_id}`)
-       getBlogs()
+
+         //insertar la validación con Alert
+
+        Swal.fire({
+        title: 'Advertencia',
+        text: 'Esta seguro de eliminar el usuario?',
+        icon: 'question',
+        showDenyButton: true,
+        denyButtonText: "NO",
+        confirmButtonText: "SI",
+       }).then(response => {
+        if(response.isConfirmed){
+            axios.delete(`${URI}${_id}`)
+            Swal.fire("El usuario se elimino con exito")
+            getBlogs()
+        }else{
+            Swal.fire("Seleccione el usuario a eliminar")
+        }
+       })
+       
     }
+     // await axios.delete(`${URI}${_id}`)
+      //getBlogs()
+    //}
 
     return(
         <div className='container'>

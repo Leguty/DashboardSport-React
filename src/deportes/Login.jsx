@@ -1,18 +1,18 @@
-import { useState, useEffect} from "react";
+import { useState, useEffect } from "react";
 import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
 import Swal from 'sweetalert2';
+//import Button from 'react-bootstrap/Button';
+//import Form from 'react-bootstrap/Form';
+//import Card from 'react-bootstrap/Card';
 
-//import styles from "./styles.module.css";
-//useNavigate
 
    
     export const Login = () => {
     
     //Se crea una funcion de monstrar alerta
     useEffect ( ()=>{
-        //mostraralert()
-    },[])
+        },[])
 
      //Se llama la funcion mostraralert
      const mostraralert = () => {
@@ -27,7 +27,7 @@ import Swal from 'sweetalert2';
 
     const [body, setBody] = useState({ correo: '', password: '' })
     const navigate  = useNavigate()
-   
+  
 
     const inputChange = ({ target }) => {
         const { name, value } = target
@@ -41,7 +41,7 @@ import Swal from 'sweetalert2';
        const onSubmit = async (e) => {
         e.preventDefault();
         try{
-            
+
             let axiosConfig = {
                 headers: {
                     'Content-Type': 'application/json;charset=UTF-8',
@@ -49,18 +49,22 @@ import Swal from 'sweetalert2';
                     
                 }
               };
-            const URI = 'http://localhost:8001/usuarios/login'
+            const URI = 'http://localhost:8000/usuarios/login'
         console.log("paso por aca")
         const resp = await axios.post(URI, body, axiosConfig );
-   
-        let s = JSON.stringify(resp?.data);
+        mostraralert()
+    let s = JSON.stringify(resp?.data);
+      
             let union1 = s.split(":")[2];
-            //let union2 = s.split(":")[2];
-             let r = union1.substring(1, union1.length-3);
-                  console.log('Este es el JWT:',r);
-                 localStorage.setItem('auth',r)
-                  navigate('/sheventos')
-                    window.location = '/sheventos'
+        
+            let r = union1.substring(1, union1.length-3);
+                console.log('Este es el JWT:',r);
+                localStorage.setItem('auth',r)
+                if (mostraralert)
+            {
+            navigate('/sheventos')
+            window.location = '/sheventos'
+            }
 
         }
         catch(error)  {
@@ -76,6 +80,7 @@ import Swal from 'sweetalert2';
 		
         <div className="login-form">
         <h3>Ingrese a su cuenta</h3>
+  
          <form >
             <input
                
@@ -96,11 +101,11 @@ import Swal from 'sweetalert2';
                  
              />
             
-             <button onClick={onSubmit} type="submit" color="#062af8" >
-            
+             <button variant="secondary" onClick={onSubmit} type="submit" className="btn-register" color="#062af8" >
+            Ingresar 
             </button>
              <Link to="/create" >
-             <button type="submit" className="btn-register">Ingresar</button></Link>
+             <button as="a" variant="warning" type="submit" className="btn-register">Actualizar</button></Link>
          </form>
          
      </div>

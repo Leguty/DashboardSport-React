@@ -4,7 +4,7 @@
 }
 
 .App-logo {
-  height: 40vmin;
+  height: 30vmin;
   pointer-events: none;
 }
 
@@ -26,7 +26,7 @@
 }
 
 .App-link {
-  color: #16128e;
+  color: #6273d5;
 }
 
 @keyframes App-logo-spin {
@@ -63,7 +63,7 @@
 .btn-register{
   width: 100%;
   padding: 15px;
-  background-color: #062af8;
+  background-color: #6273d5;
   border: 0;
   box-sizing: border-box;
   cursor: pointer;
@@ -79,7 +79,7 @@
 }
 .btn-register:hover,.btn-register:active{
   color:rgb(251, 248, 248);
-  background-color: #062af8;
+  background-color: #6273d5;
   border-color:#e2b674;
 }
 
@@ -91,13 +91,12 @@ section{
 
 }
 
-.navBg{
-background-color: #062af8;
-font-weight: lighter;
-font-size: large; 
-color: rgb(81, 91, 205);
-
-
+.navBg {
+  background-color:#6273d5;
+  font-size: large;
+  font-weight: lighter;
+  color:#f5f7f9;
 }
 
-head { color: #062af8; }
+
+head { color: #6273d5; }
